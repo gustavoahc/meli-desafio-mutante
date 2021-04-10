@@ -29,7 +29,7 @@ public class MutantController {
 		this.mutantBusiness = new MutantBusiness();
 		this.statBusiness = new StatBusiness();
 	}
-/*
+
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "200", description = "List of stats"),
 		@ApiResponse(responseCode = "403", description = "Error returning stats") })
@@ -38,7 +38,7 @@ public class MutantController {
 	{
 		return this.statBusiness.findAllStats();
 	}
-*/
+
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "200", description = "Mutant DNA received"),
 		@ApiResponse(responseCode = "403", description = "Not mutant DNA received") })
