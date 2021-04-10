@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS stat (
+  stat_id INT AUTO_INCREMENT PRIMARY KEY,
+  dna VARCHAR(1000) NOT NULL,
+  is_mutant BOOLEAN NOT NULL
+) ENGINE = InnoDB;
+
+
+CREATE INDEX ix_dna ON stat(dna);
