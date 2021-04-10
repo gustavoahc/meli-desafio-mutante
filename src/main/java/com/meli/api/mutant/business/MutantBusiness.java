@@ -13,11 +13,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MutantBusiness {
 
 	@Autowired
 	private StatBusiness statBusiness;
+
+	public MutantBusiness() {
+		this.statBusiness = new StatBusiness();
+	}
 
 	public ResponseEntity<String> isMutant(DnaSequence dna)
 	{
@@ -27,8 +33,7 @@ public class MutantBusiness {
 		try {
 			String[] array = dna.getDna().toArray(new String[0]);
 			boolean mutant = this.validateDnaSequence(array);
-			this.statBusiness = new StatBusiness();
-			
+						
 			StringBuilder dnaString = new StringBuilder();
 			for(String str : dna.getDna())
 			{
@@ -51,7 +56,7 @@ public class MutantBusiness {
 		} catch (Exception e) {
 			response = new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
 		}
-		//Stat stat = this.statBusiness.saveStat(newStat);
+		Stat stat = this.statBusiness.saveStat(newStat);
 
 		return response;
 	}
