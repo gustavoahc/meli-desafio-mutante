@@ -6,6 +6,7 @@ import java.util.List;
 
 //import com.meli.api.mutant.model.Mutant;
 import com.meli.api.mutant.model.Stat;
+import com.meli.api.mutant.service.MutantService;
 import com.meli.api.mutant.dto.DnaSequence;
 import com.meli.api.mutant.business.StatBusiness;
 
@@ -16,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MutantBusiness {
+public class MutantBusiness implements MutantService {
 
 	@Autowired
 	private StatBusiness statBusiness;
