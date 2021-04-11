@@ -30,12 +30,12 @@ public class MutantBusiness implements MutantService {
 	{
 		ResponseEntity<String> response = null;
 		Stat newStat = new Stat();
+		StringBuilder dnaString = new StringBuilder();
 		
 		try {
 			String[] array = dna.getDna().toArray(new String[0]);
 			boolean mutant = this.validateDnaSequence(array);
-						
-			StringBuilder dnaString = new StringBuilder();
+			
 			for(String str : dna.getDna())
 			{
 				dnaString.append(str);
@@ -57,8 +57,11 @@ public class MutantBusiness implements MutantService {
 		} catch (Exception e) {
 			response = new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
 		}
-		Stat stat = this.statBusiness.saveStat(newStat);
 
+		if (this.statBusiness.isValidDna(dnaString.toString())) {
+			Stat stat = this.statBusiness.saveStat(newStat);
+		}
+		
 		return response;
 	}
 

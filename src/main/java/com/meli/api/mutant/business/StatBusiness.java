@@ -19,12 +19,10 @@ public class StatBusiness implements StatService {
 	@Autowired
 	private StatRepository statRepository;
 
-	@Override
 	public List<Stat> findAllStats(){
 		return this.statRepository.findAll();
 	}
 
-	@Override
 	public Stat saveStat(Stat stat){
 		return this.statRepository.save(stat);
 	}
@@ -33,14 +31,20 @@ public class StatBusiness implements StatService {
 		ResponseEntity<StatResult> response = null;
 		StatResult statResult = null;
 
-		//try {
+		try {
 			statResult = this.statRepository.countStats();
 			response = new ResponseEntity<StatResult>(statResult, HttpStatus.OK);
-		/*} catch (Exception e) {
+		} catch (Exception e) {
 			response = new ResponseEntity<StatResult>(HttpStatus.BAD_REQUEST);
-		}*/
+		}
 		
 		return response;
+	}
+
+	public boolean isValidDna(String dna){
+		Stat stat = this.statRepository.validateDna(dna);
+
+		return stat == null ? true : false;
 	}
 
 }

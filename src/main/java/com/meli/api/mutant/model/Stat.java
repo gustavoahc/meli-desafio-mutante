@@ -22,6 +22,15 @@ public class Stat {
 	@Column(name = "dna")
 	String dna;
 
+	public Stat() {
+	}
+
+	public Stat(Long statId, boolean mutant, String dna) {
+		this.statId = statId;
+		this.mutant = mutant;
+		this.dna = dna;
+	}
+
 	/**
 	 * @return the statId
 	 */
