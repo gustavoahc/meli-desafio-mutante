@@ -53,15 +53,15 @@ public class MutantBusiness implements MutantService {
 				newStat.setMutant(false);
 				response = new ResponseEntity<>("Human DNA!!!", HttpStatus.FORBIDDEN);
 			}
+
+			if (this.statBusiness.isValidDna(dnaString.toString())) {
+				Stat stat = this.statBusiness.saveStat(newStat);
+			}
 			
 		} catch (Exception e) {
 			response = new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
 		}
 
-		if (this.statBusiness.isValidDna(dnaString.toString())) {
-			Stat stat = this.statBusiness.saveStat(newStat);
-		}
-		
 		return response;
 	}
 
