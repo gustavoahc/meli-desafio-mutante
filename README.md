@@ -3,6 +3,7 @@
 Reto propuesto para determinar si un humano es mutante a partir de su ADN por medio de una API REST 
 
 ## Tecnologias
+* Java 11
 * Spring Boot
 * Maven
 * MySql (Azure)
