@@ -20,7 +20,8 @@ public class Matrix {
 		this.data = new ArrayList<String>(Arrays.asList(array));
 	}
 
-	public boolean validateMatrix() throws Exception {
+	public boolean validateMatrix() throws Exception 
+	{
 		this.rows = this.data.size();
 
 		this.validateSize();
@@ -75,13 +76,13 @@ public class Matrix {
 		}
 	}
 
-	public void validateSize() throws Exception {
+	private void validateSize() throws Exception {
 		if (this.rows < MIN_MUTANT_SIZE) {
 			throw new Exception("Invalid DNA size!!!");
 		}
 	}
 
-	public void validateDnaSequence() throws Exception {
+	private void validateDnaSequence() throws Exception {
 		int dimmensionRow = this.rows;
 		for (int i = 0; i < this.rows; i++) {
 			if (this.data.get(i).length() != dimmensionRow) {

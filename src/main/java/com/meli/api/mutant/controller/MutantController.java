@@ -12,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.meli.api.mutant.model.*;
 import com.meli.api.mutant.dto.DnaSequence;
-import com.meli.api.mutant.business.MutantBusiness;
-import com.meli.api.mutant.business.StatBusiness;
+import com.meli.api.mutant.service.*;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -21,14 +20,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 @RestController
 public class MutantController {
 
-	@Autowired
-	private MutantBusiness mutantBusiness;
-	@Autowired
-	private StatBusiness statBusiness;
+	private MutantService mutantService;
+	private StatService statService;
 
-	public MutantController() {
-		this.mutantBusiness = new MutantBusiness();
-		this.statBusiness = new StatBusiness();
+	public MutantController(MutantService mutantService, StatService statService) {
+		this.mutantService = mutantService;
+		this.statService = statService;
 	}
 
 	@ApiResponses(value = {
@@ -37,7 +34,7 @@ public class MutantController {
 	@GetMapping(value = "/list")
 	public List<Stat> completeList()
 	{
-		return this.statBusiness.findAllStats();
+		return this.statService.findAllStats();
 	}
 
 	@ApiResponses(value = {
@@ -46,7 +43,7 @@ public class MutantController {
 	@GetMapping(value = "/stats")
 	public ResponseEntity<StatResult> stats()
 	{
-		return this.statBusiness.countStats();
+		return this.statService.countStats();
 	}
 
 	@ApiResponses(value = {
@@ -54,7 +51,7 @@ public class MutantController {
 		@ApiResponse(responseCode = "403") })
 	@PostMapping(value = "/mutant")
 	public ResponseEntity<String> validateDNA(@RequestBody DnaSequence dna) {
-		return this.mutantBusiness.isMutant(dna);
+		return this.mutantService.isMutant(dna);
 	}
 
 }

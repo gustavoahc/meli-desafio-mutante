@@ -6,9 +6,9 @@ import java.util.List;
 
 //import com.meli.api.mutant.model.Mutant;
 import com.meli.api.mutant.model.Stat;
-import com.meli.api.mutant.service.MutantService;
+import com.meli.api.mutant.service.*;
 import com.meli.api.mutant.dto.DnaSequence;
-import com.meli.api.mutant.business.StatBusiness;
+//import com.meli.api.mutant.business.StatBusiness;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +20,10 @@ import org.springframework.stereotype.Service;
 public class MutantBusiness implements MutantService {
 
 	@Autowired
-	private StatBusiness statBusiness;
+	private StatService statService;
 
-	public MutantBusiness() {
-		this.statBusiness = new StatBusiness();
+	public MutantBusiness(StatService statService) {
+		this.statService = statService;
 	}
 
 	public ResponseEntity<String> isMutant(DnaSequence dna)
@@ -54,8 +54,8 @@ public class MutantBusiness implements MutantService {
 				response = new ResponseEntity<>("Human DNA!!!", HttpStatus.FORBIDDEN);
 			}
 
-			if (this.statBusiness.isValidDna(dnaString.toString())) {
-				Stat stat = this.statBusiness.saveStat(newStat);
+			if (this.statService.isValidDna(dnaString.toString())) {
+				Stat stat = this.statService.saveStat(newStat);
 			}
 			
 		} catch (Exception e) {
