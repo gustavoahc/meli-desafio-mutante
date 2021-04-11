@@ -8,7 +8,6 @@ Reto propuesto para determinar si un humano es mutante a partir de su ADN por me
 * MySql (Azure)
 * JPA
 
-
 ## Endpoints
 
 - [Servicio validador de ADN](https://mutant-1617995143666.azurewebsites.net/mutant)
@@ -16,10 +15,11 @@ Reto propuesto para determinar si un humano es mutante a partir de su ADN por me
 - [Servicio para el listado de registros](https://mutant-1617995143666.azurewebsites.net/list)
 
 ## Uso
-### Mutante
 
 Request: 
 - POST https://mutant-1617995143666.azurewebsites.net/mutant
+
+### Mutante
 
 Request body:
 
@@ -70,7 +70,7 @@ Response: 200
 
 ### Ejecutar localmente
 
-Utilizar el siguiente comando para correr el programa en local:
+Utilizar el siguiente comando para correr el programa localmente:
 
 ```
 mvn spring-boot:run
