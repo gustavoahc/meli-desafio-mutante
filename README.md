@@ -14,6 +14,7 @@ Reto propuesto para determinar si un humano es mutante a partir de su ADN por me
 - [Servicio validador de ADN](https://mutant-1617995143666.azurewebsites.net/mutant)
 - [Servicio de estadisticas](https://mutant-1617995143666.azurewebsites.net/stats)
 - [Servicio para el listado de registros](https://mutant-1617995143666.azurewebsites.net/list)
+- [Documentacion Swagger](https://mutant-1617995143666.azurewebsites.net/swagger-ui.html)
 
 ## Uso
 
