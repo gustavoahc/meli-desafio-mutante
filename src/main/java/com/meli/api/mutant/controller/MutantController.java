@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.meli.api.mutant.model.*;
 import com.meli.api.mutant.dto.DnaSequence;
-import com.meli.api.mutant.service.*;
+import com.meli.api.mutant.iservice.*;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -20,13 +20,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 @RestController
 public class MutantController {
 
-	private MutantService mutantService;
-	private StatService statService;
-
-	public MutantController(MutantService mutantService, StatService statService) {
-		this.mutantService = mutantService;
-		this.statService = statService;
-	}
+	@Autowired
+	private IMutantService mutantService;
+	@Autowired
+	private IStatService statService;
 
 	@ApiResponses(value = {
 		@ApiResponse(responseCode = "200"),

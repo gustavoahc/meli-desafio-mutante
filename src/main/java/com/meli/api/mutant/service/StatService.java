@@ -1,19 +1,50 @@
 package com.meli.api.mutant.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.meli.api.mutant.model.*;
+import com.meli.api.mutant.iservice.IStatService;
+import com.meli.api.mutant.repository.StatRepository;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public interface StatService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-	public List<Stat> findAllStats();
+@Service
+public class StatService implements IStatService {
 
-	public Stat saveStat(Stat stat);
+	@Autowired
+	private StatRepository statRepository;
 
-	public ResponseEntity<StatResult> countStats();
+	public List<Stat> findAllStats(){
+		return this.statRepository.findAll();
+	}
 
-	public boolean isValidDna(String dna);
+	public Stat saveStat(Stat stat){
+		return this.statRepository.save(stat);
+	}
+
+	public ResponseEntity<StatResult> countStats(){
+		ResponseEntity<StatResult> response = null;
+		StatResult statResult = null;
+
+		try {
+			statResult = this.statRepository.countStats();
+			response = new ResponseEntity<StatResult>(statResult, HttpStatus.OK);
+		} catch (Exception e) {
+			response = new ResponseEntity<StatResult>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return response;
+	}
+
+	public boolean isValidDna(String dna){
+		Stat stat = this.statRepository.validateDna(dna);
+
+		return stat == null ? true : false;
+	}
 
 }
